@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import Image from 'next/image';
 import { MiningRig } from '../config/miningRigs';
+import { ThreeRigCardViewer } from './ThreeRigCardViewer';
 import {
   Zap,
   Gauge,
@@ -36,14 +36,13 @@ export function RigCard({ rig, onSelectBuy, ownedCount = 0 }: RigCardProps) {
           <span className="text-orange-500 font-bold uppercase">{rig.tier}</span>
         </div>
 
-        {/* Rig Image */}
-        <div className="relative my-4 h-52 w-full overflow-hidden bg-zinc-900 border border-zinc-900">
-          <Image
-            src={rig.image}
-            alt={rig.name}
-            fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
+        {/* Interactive 3D Model Viewer */}
+        <div className="my-4">
+          <ThreeRigCardViewer
+            modelUrl={rig.modelUrl}
+            onlineModelUrl={rig.onlineModelUrl}
+            rigName={rig.name}
+            tier={rig.tier}
           />
         </div>
 

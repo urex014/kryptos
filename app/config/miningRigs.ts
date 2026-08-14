@@ -12,6 +12,8 @@ export interface MiningRig {
   coolingType: string;
   tier: 'Starter' | 'Pro' | 'Industrial' | 'Datacenter' | 'Apex';
   image: string;
+  modelUrl: string;
+  onlineModelUrl: string;
   inStock: boolean;
   featured?: boolean;
   specs: {
@@ -38,6 +40,8 @@ export const MINING_RIGS: MiningRig[] = [
     coolingType: 'Dual Honeycomb Air Fan',
     tier: 'Starter',
     image: '/rigs/rig-1.jpg',
+    modelUrl: '/models/boombox.glb',
+    onlineModelUrl: 'https://threejs.org/examples/models/gltf/BoomBox.glb',
     inStock: true,
     specs: {
       chips: '7nm FinFET x 180',
@@ -60,6 +64,8 @@ export const MINING_RIGS: MiningRig[] = [
     coolingType: 'Dual-Chamber Air & Copper Heatpipe',
     tier: 'Pro',
     image: '/rigs/rig-2.jpg',
+    modelUrl: '/models/damaged_helmet.glb',
+    onlineModelUrl: 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/DamagedHelmet/glTF-Binary/DamagedHelmet.glb',
     inStock: true,
     featured: true,
     specs: {
@@ -83,6 +89,8 @@ export const MINING_RIGS: MiningRig[] = [
     coolingType: 'Triple-Rad Closed Liquid Loop',
     tier: 'Industrial',
     image: '/rigs/rig-3.jpg',
+    modelUrl: '/models/ion_drive.glb',
+    onlineModelUrl: 'https://threejs.org/examples/models/gltf/PrimaryIonDrive.glb',
     inStock: true,
     specs: {
       chips: '4nm Cryo-Enhanced x 384',
@@ -105,6 +113,8 @@ export const MINING_RIGS: MiningRig[] = [
     coolingType: 'Direct-to-Chip Active Manifold',
     tier: 'Datacenter',
     image: '/rigs/rig-4.jpg',
+    modelUrl: '/models/steampunk_camera.glb',
+    onlineModelUrl: 'https://threejs.org/examples/models/gltf/steampunk_camera.glb',
     inStock: true,
     specs: {
       chips: '3nm Quantum Die Matrix x 720',
@@ -127,6 +137,8 @@ export const MINING_RIGS: MiningRig[] = [
     coolingType: 'Full Immersion Dielectric Chamber',
     tier: 'Apex',
     image: '/rigs/rig-5.jpg',
+    modelUrl: '/models/shaderball.glb',
+    onlineModelUrl: 'https://threejs.org/examples/models/gltf/ShaderBall.glb',
     inStock: true,
     featured: true,
     specs: {

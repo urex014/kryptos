@@ -1,11 +1,11 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
-import Image from 'next/image';
 import gsap from 'gsap';
 import { MINING_RIGS, MiningRig } from '../config/miningRigs';
 import { useWeb3 } from '../context/Web3Context';
 import { ThreeMinerScene } from './ThreeMinerScene';
+import { ThreeRigCardViewer } from './ThreeRigCardViewer';
 import { LiveMiningLedger } from './LiveMiningLedger';
 import {
   Cpu,
@@ -325,13 +325,13 @@ export function LandingPage({
                     <span className="text-orange-500 uppercase">{rig.tier}</span>
                   </div>
 
-                  {/* Hardware Image */}
-                  <div className="relative my-4 h-48 w-full overflow-hidden bg-zinc-900 border border-zinc-900">
-                    <Image
-                      src={rig.image}
-                      alt={rig.name}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  {/* Hardware 3D Model */}
+                  <div className="my-4">
+                    <ThreeRigCardViewer
+                      modelUrl={rig.modelUrl}
+                      onlineModelUrl={rig.onlineModelUrl}
+                      rigName={rig.name}
+                      tier={rig.tier}
                     />
                   </div>
 

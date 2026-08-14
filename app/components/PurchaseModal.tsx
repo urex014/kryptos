@@ -1,9 +1,9 @@
 'use client';
 
 import React, { useState } from 'react';
-import Image from 'next/image';
 import { MiningRig, SUPPORTED_CHAINS, DEFAULT_CHAIN_ID } from '../config/miningRigs';
 import { useWeb3, TxStep } from '../context/Web3Context';
+import { ThreeRigCardViewer } from './ThreeRigCardViewer';
 import {
   X,
   Plus,
@@ -152,12 +152,14 @@ export function PurchaseModal({
           <div className="mt-5 space-y-4 font-mono text-xs">
             {/* Rig Preview Card */}
             <div className="flex items-center gap-4 border border-zinc-800 bg-zinc-950 p-3.5">
-              <div className="relative h-14 w-14 shrink-0 overflow-hidden border border-zinc-800 bg-zinc-900">
-                <Image
-                  src={rig.image}
-                  alt={rig.name}
-                  fill
-                  className="object-cover"
+              <div className="w-18 h-18 shrink-0 overflow-hidden border border-zinc-800 bg-zinc-950">
+                <ThreeRigCardViewer
+                  modelUrl={rig.modelUrl}
+                  onlineModelUrl={rig.onlineModelUrl}
+                  rigName={rig.name}
+                  tier={rig.tier}
+                  className="w-full h-full"
+                  compact={true}
                 />
               </div>
               <div className="flex-1 min-w-0">

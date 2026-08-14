@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
 import { useWeb3 } from '../context/Web3Context';
 import { MINING_RIGS } from '../config/miningRigs';
 import {
@@ -10,7 +9,9 @@ import {
   TrendingUp,
   Server,
   ArrowRight,
+  Cpu,
 } from 'lucide-react';
+import { ThreeRigCardViewer } from './ThreeRigCardViewer';
 
 interface FleetViewProps {
   onNavigateToCatalog: () => void;
@@ -106,7 +107,7 @@ export function FleetView({ onNavigateToCatalog }: FleetViewProps) {
               <span>EST. DAILY YIELD</span>
             </div>
             <div className="mt-2 text-2xl font-black text-orange-500">
-              {(totalRawHashrate * 0.0000041).toFixed(5)}{' '}
+              {(totalRawHashrate * 0.00041).toFixed(5)}{' '}
               <span className="text-xs">ETH/d</span>
             </div>
             <div className="text-[11px] text-zinc-500 mt-1">
@@ -156,34 +157,41 @@ export function FleetView({ onNavigateToCatalog }: FleetViewProps) {
             DEPLOYED MODULES ({fleetRigs.length} MODEL TYPES ACTIVE)
           </div>
 
-          <div className="grid grid-cols-1 gap-4 font-mono">
+          <div className="grid grid-cols-1 gap-5 font-mono">
             {fleetRigs.map(({ rig, count }) => {
               const combinedHash = rig.hashrateRaw * count;
               return (
                 <div
                   key={rig.id}
-                  className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 border border-zinc-800 bg-[#0d0e12] p-5 transition-all hover:border-zinc-700"
+                  className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-6 border border-zinc-800 bg-[#0d0e12] p-5 transition-all hover:border-zinc-700"
                 >
-                  <div className="flex items-center gap-4">
-                    <div className="relative h-16 w-16 shrink-0 overflow-hidden border border-zinc-800 bg-zinc-900">
-                      <Image
-                        src={rig.image}
-                        alt={rig.name}
-                        fill
-                        className="object-cover"
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
+                    {/* 3D Hardware Model Viewport */}
+                    <div className="w-full sm:w-44 h-36 shrink-0 border border-zinc-800 bg-zinc-950 overflow-hidden">
+                      <ThreeRigCardViewer
+                        modelUrl={rig.modelUrl}
+                        onlineModelUrl={rig.onlineModelUrl}
+                        rigName={rig.name}
+                        tier={rig.tier}
+                        className="w-full h-full"
+                        compact={true}
                       />
                     </div>
+
                     <div>
                       <div className="flex items-baseline gap-2">
                         <h4 className="text-base font-bold text-white">
                           {rig.name}
                         </h4>
-                        <span className="text-xs text-orange-500 uppercase">
+                        <span className="text-xs text-orange-500 uppercase font-bold">
                           [{rig.tier}]
                         </span>
                       </div>
-                      <div className="mt-1 flex items-center gap-2 text-xs text-zinc-400">
-                        <span className="h-1.5 w-1.5 bg-emerald-500" />
+                      <p className="mt-0.5 text-xs text-zinc-400 max-w-md">
+                        {rig.tagline}
+                      </p>
+                      <div className="mt-2 flex items-center gap-2 text-xs text-zinc-400">
+                        <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
                         <span className="text-emerald-400 font-bold">
                           ONLINE // HASHING
                         </span>
@@ -193,8 +201,8 @@ export function FleetView({ onNavigateToCatalog }: FleetViewProps) {
                     </div>
                   </div>
 
-                  <div className="flex flex-wrap items-center gap-6 w-full md:w-auto justify-between md:justify-end border-t md:border-t-0 pt-3 md:pt-0 border-zinc-800">
-                    <div className="text-left md:text-right">
+                  <div className="flex flex-wrap items-center gap-6 w-full lg:w-auto justify-between lg:justify-end border-t lg:border-t-0 pt-4 lg:pt-0 border-zinc-800">
+                    <div className="text-left lg:text-right">
                       <div className="text-[10px] uppercase text-zinc-500">
                         DEPLOYED UNITS
                       </div>
@@ -203,7 +211,7 @@ export function FleetView({ onNavigateToCatalog }: FleetViewProps) {
                       </div>
                     </div>
 
-                    <div className="text-left md:text-right">
+                    <div className="text-left lg:text-right">
                       <div className="text-[10px] uppercase text-zinc-500">
                         COMBINED CAPACITY
                       </div>
@@ -212,7 +220,7 @@ export function FleetView({ onNavigateToCatalog }: FleetViewProps) {
                       </div>
                     </div>
 
-                    <div className="text-left md:text-right">
+                    <div className="text-left lg:text-right">
                       <div className="text-[10px] uppercase text-zinc-500">
                         EST. DAILY YIELD
                       </div>
