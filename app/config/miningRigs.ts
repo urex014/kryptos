@@ -163,6 +163,7 @@ export interface ChainConfig {
 }
 
 export const SUPPORTED_CHAINS: Record<number, ChainConfig> = {
+  /*
   11155111: {
     id: 11155111,
     name: 'Ethereum Sepolia',
@@ -175,6 +176,7 @@ export const SUPPORTED_CHAINS: Record<number, ChainConfig> = {
     },
     testnet: true,
   },
+  */
   1: {
     id: 1,
     name: 'Ethereum Mainnet',
@@ -210,4 +212,4 @@ export const SUPPORTED_CHAINS: Record<number, ChainConfig> = {
   },
 };
 
-export const DEFAULT_CHAIN_ID = 11155111; // Sepolia Testnet for zero-risk testing by default
+export const DEFAULT_CHAIN_ID = 1; // Ethereum Mainnet

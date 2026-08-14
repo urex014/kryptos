@@ -7,11 +7,6 @@ import {
   Cpu,
   Wallet,
   ChevronDown,
-  Activity,
-  Settings2,
-  Server,
-  Zap,
-  Home as HomeIcon,
 } from 'lucide-react';
 
 interface NavbarProps {
@@ -19,7 +14,6 @@ interface NavbarProps {
   setActiveTab: (tab: 'home' | 'catalog' | 'fleet' | 'activity') => void;
   onOpenWalletModal: () => void;
   onOpenAccountModal: () => void;
-  onOpenTreasuryModal: () => void;
 }
 
 export function Navbar({
@@ -27,7 +21,6 @@ export function Navbar({
   setActiveTab,
   onOpenWalletModal,
   onOpenAccountModal,
-  onOpenTreasuryModal,
 }: NavbarProps) {
   const {
     address,
@@ -35,7 +28,6 @@ export function Navbar({
     balanceEth,
     isConnected,
     walletIcon,
-    isDemoWallet,
     purchases,
     switchNetwork,
   } = useWeb3();
@@ -127,16 +119,6 @@ export function Navbar({
 
         {/* Right Actions */}
         <div className="flex items-center gap-3">
-          {/* Treasury Config */}
-          <button
-            onClick={onOpenTreasuryModal}
-            title="Treasury Recipient Configuration"
-            className="flex items-center gap-1.5 border border-zinc-800 bg-zinc-900 px-3 py-2 text-xs font-mono text-zinc-400 hover:text-zinc-200 hover:border-zinc-700 transition-colors cursor-pointer"
-          >
-            <Settings2 className="h-3.5 w-3.5" />
-            <span className="hidden sm:inline">TREASURY</span>
-          </button>
-
           {/* Network Selector */}
           {isConnected && (
             <div className="relative">

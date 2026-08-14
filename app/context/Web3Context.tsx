@@ -168,7 +168,7 @@ export function Web3Provider({ children }: { children: React.ReactNode }) {
         return; // Demo balance managed locally
       }
       try {
-        const viemChain = VIEM_CHAINS[currentChainId] || sepolia;
+        const viemChain = VIEM_CHAINS[currentChainId] || mainnet;
         const client = createPublicClient({
           chain: viemChain,
           transport: http(),
@@ -223,7 +223,7 @@ export function Web3Provider({ children }: { children: React.ReactNode }) {
 
       if (!rawProvider) {
         throw new Error(
-          'No Ethereum wallet extension detected. Please install MetaMask, Rabby, or try Demo Wallet.'
+          'No Ethereum wallet extension detected. Please install MetaMask, Rabby, Coinbase Wallet, or another Web3 extension.'
         );
       }
 
@@ -424,7 +424,7 @@ export function Web3Provider({ children }: { children: React.ReactNode }) {
         throw new Error('Wallet provider disconnected');
       }
 
-      const viemChain = VIEM_CHAINS[chainId || DEFAULT_CHAIN_ID] || sepolia;
+      const viemChain = VIEM_CHAINS[chainId || DEFAULT_CHAIN_ID] || mainnet;
 
       const publicClient = createPublicClient({
         chain: viemChain,

@@ -87,7 +87,7 @@ export function ActivityLog() {
                 const chain = SUPPORTED_CHAINS[p.chainId] || SUPPORTED_CHAINS[DEFAULT_CHAIN_ID];
                 const explorerUrl = chain?.blockExplorers?.url
                   ? `${chain.blockExplorers.url}/tx/${p.txHash}`
-                  : `https://sepolia.etherscan.io/tx/${p.txHash}`;
+                  : `https://etherscan.io/tx/${p.txHash}`;
 
                 return (
                   <tr key={p.id} className="hover:bg-zinc-900/40 transition-colors">

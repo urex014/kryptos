@@ -429,7 +429,7 @@ export function LandingPage({
               Wallet Handshake
             </h4>
             <p className="text-xs text-zinc-400 leading-relaxed">
-              Connect via EIP-6963 multi-injected provider (MetaMask, Rabby, Coinbase) on Ethereum Sepolia or Mainnet.
+              Connect via EIP-6963 multi-injected provider (MetaMask, Rabby, Coinbase) on Ethereum Mainnet, Base, or Arbitrum.
             </p>
           </div>
 

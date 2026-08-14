@@ -38,7 +38,7 @@ export function AccountModal({ isOpen, onClose }: AccountModalProps) {
   const currentChain = chainId ? SUPPORTED_CHAINS[chainId] : null;
   const explorerUrl = currentChain?.blockExplorers?.url
     ? `${currentChain.blockExplorers.url}/address/${address}`
-    : `https://sepolia.etherscan.io/address/${address}`;
+    : `https://etherscan.io/address/${address}`;
 
   const handleCopy = () => {
     navigator.clipboard.writeText(address);

@@ -323,7 +323,7 @@ export function LiveMiningLedger() {
             {paginatedMiners.map((m, index) => {
               const isUpdated = recentlyUpdatedIds.has(m.id);
               const globalRank = (currentPage - 1) * pageSize + index + 1;
-              const explorerUrl = `https://sepolia.etherscan.io/address/${m.address}`;
+              const explorerUrl = `https://etherscan.io/address/${m.address}`;
 
               return (
                 <tr

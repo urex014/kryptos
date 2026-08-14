@@ -108,7 +108,7 @@ export function PurchaseModal({
 
   const explorerUrl = txHash && currentChain?.blockExplorers?.url
     ? `${currentChain.blockExplorers.url}/tx/${txHash}`
-    : `https://sepolia.etherscan.io/tx/${txHash}`;
+    : `https://etherscan.io/tx/${txHash}`;
 
   const truncate = (str: string) => `${str.slice(0, 8)}...${str.slice(-6)}`;
 

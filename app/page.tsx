@@ -134,7 +134,6 @@ export default function Home() {
         setActiveTab={setActiveTab}
         onOpenWalletModal={() => setWalletModalOpen(true)}
         onOpenAccountModal={() => setAccountModalOpen(true)}
-        onOpenTreasuryModal={() => setTreasuryModalOpen(true)}
       />
 
       {/* Main Content Area */}

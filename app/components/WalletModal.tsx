@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useWeb3 } from '../context/Web3Context';
-import { X, Wallet, ShieldCheck, Sparkles, Terminal } from 'lucide-react';
+import { X, Wallet } from 'lucide-react';
 
 interface WalletModalProps {
   isOpen: boolean;
@@ -12,7 +12,6 @@ interface WalletModalProps {
 export function WalletModal({ isOpen, onClose }: WalletModalProps) {
   const {
     connect,
-    connectDemoWallet,
     discoveredProviders,
     isConnecting,
   } = useWeb3();
@@ -26,11 +25,6 @@ export function WalletModal({ isOpen, onClose }: WalletModalProps) {
     } catch (err) {
       console.error(err);
     }
-  };
-
-  const handleDemoConnect = () => {
-    connectDemoWallet();
-    onClose();
   };
 
   return (
@@ -137,35 +131,6 @@ export function WalletModal({ isOpen, onClose }: WalletModalProps) {
               </span>
             </button>
           )}
-
-          {/* Instant Demo Sandbox Wallet */}
-          <div className="pt-2">
-            <div className="text-[10px] text-zinc-500 uppercase tracking-wider mb-2">
-              DEVELOPMENT & TESTING
-            </div>
-            <button
-              disabled={isConnecting}
-              onClick={handleDemoConnect}
-              className="group flex w-full items-center justify-between border border-orange-900/60 bg-zinc-950 p-3.5 hover:border-orange-500 hover:bg-zinc-900 transition-all disabled:opacity-50 cursor-pointer"
-            >
-              <div className="flex items-center gap-3">
-                <div className="flex h-7 w-7 items-center justify-center bg-orange-600/20 text-orange-500">
-                  <Sparkles className="h-3.5 w-3.5" />
-                </div>
-                <div className="text-left">
-                  <div className="font-bold text-white group-hover:text-orange-400">
-                    Sandbox Test Wallet
-                  </div>
-                  <span className="text-[10px] text-zinc-400">
-                    Preloaded 5.0 ETH • Simulated Checkout
-                  </span>
-                </div>
-              </div>
-              <span className="text-xs text-orange-500">
-                LAUNCH &rarr;
-              </span>
-            </button>
-          </div>
         </div>
 
         {/* Security Footer */}
