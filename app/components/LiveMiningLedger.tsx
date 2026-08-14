@@ -305,8 +305,12 @@ export function LiveMiningLedger() {
       </div>
 
       {/* Real-Time Live Table */}
-      <div className="overflow-x-auto border border-zinc-800 bg-[#0d0e12]">
-        <table className="w-full text-left text-xs font-mono">
+      <div className="space-y-1.5">
+        <div className="flex sm:hidden justify-end text-[10px] text-zinc-500">
+          <span>&larr; Swipe to view all 8 columns &rarr;</span>
+        </div>
+        <div className="overflow-x-auto border border-zinc-800 bg-[#0d0e12] scrollbar-thin">
+          <table className="w-full text-left text-xs font-mono">
           <thead className="border-b border-zinc-800 bg-zinc-950 text-[10px] uppercase tracking-wider text-zinc-500">
             <tr>
               <th className="py-3 px-4">RANK</th>
@@ -420,6 +424,7 @@ export function LiveMiningLedger() {
             })}
           </tbody>
         </table>
+      </div>
       </div>
 
       {/* Pagination Controls */}

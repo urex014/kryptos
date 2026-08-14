@@ -69,8 +69,12 @@ export function ActivityLog() {
           </p>
         </div>
       ) : (
-        <div className="overflow-x-auto border border-zinc-800 bg-[#0d0e12]">
-          <table className="w-full text-left text-xs font-mono">
+        <div className="space-y-2">
+          <div className="flex sm:hidden justify-end text-[10px] text-zinc-500">
+            <span>&larr; Swipe to view full ledger &rarr;</span>
+          </div>
+          <div className="overflow-x-auto border border-zinc-800 bg-[#0d0e12] scrollbar-thin">
+            <table className="w-full text-left text-xs font-mono">
             <thead className="border-b border-zinc-800 bg-zinc-950 text-[10px] uppercase tracking-wider text-zinc-500">
               <tr>
                 <th className="py-3 px-4">TIMESTAMP</th>
@@ -131,6 +135,7 @@ export function ActivityLog() {
               })}
             </tbody>
           </table>
+        </div>
         </div>
       )}
     </div>

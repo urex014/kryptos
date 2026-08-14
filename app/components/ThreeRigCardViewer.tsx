@@ -89,6 +89,10 @@ export function ThreeRigCardViewer({
     controls.autoRotateSpeed = 1.8;
     controls.maxPolarAngle = Math.PI / 2 + 0.3;
     controls.minPolarAngle = Math.PI / 4;
+    controls.touches = {
+      ONE: THREE.TOUCH.ROTATE,
+      TWO: THREE.TOUCH.DOLLY_PAN,
+    };
 
     // 3. Hardware Studio Lighting
     const ambientLight = new THREE.AmbientLight(0xffffff, 1.1);
@@ -270,7 +274,7 @@ export function ThreeRigCardViewer({
 
   return (
     <div
-      className={`relative overflow-hidden bg-[#07080c] border border-zinc-900 group/canvas cursor-grab active:cursor-grabbing ${
+      className={`relative overflow-hidden bg-[#07080c] border border-zinc-900 group/canvas cursor-grab active:cursor-grabbing touch-pan-y select-none ${
         className || 'w-full h-52'
       }`}
       onMouseEnter={() => setIsHovered(true)}

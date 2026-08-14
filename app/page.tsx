@@ -137,7 +137,7 @@ export default function Home() {
       />
 
       {/* Main Content Area */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-6 sm:py-8 pb-24 md:pb-8">
         {/* Tab 0: High-Impact Landing Page */}
         {activeTab === 'home' && (
           <LandingPage
@@ -296,7 +296,7 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-zinc-800 bg-[#0a0b0e] py-8 mt-12 font-mono text-xs text-zinc-500">
+      <footer className="border-t border-zinc-800 bg-[#0a0b0e] py-8 mt-12 mb-16 md:mb-0 font-mono text-xs text-zinc-500">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             <Cpu className="h-4 w-4 text-orange-500" />

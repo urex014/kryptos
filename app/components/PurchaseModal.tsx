@@ -121,7 +121,7 @@ export function PurchaseModal({
       />
 
       {/* Modal Box */}
-      <div className="relative w-full max-w-lg border border-zinc-800 bg-[#0d0e12] p-6 shadow-2xl transition-all">
+      <div className="relative w-full max-w-lg border border-zinc-800 bg-[#0d0e12] p-5 sm:p-6 shadow-2xl transition-all max-h-[92vh] overflow-y-auto">
         {/* Header */}
         <div className="flex items-center justify-between pb-4 border-b border-zinc-800 font-mono">
           <div className="flex items-center gap-2.5">
