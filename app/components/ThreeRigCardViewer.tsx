@@ -15,6 +15,159 @@ interface ThreeRigCardViewerProps {
   compact?: boolean;
 }
 
+function create3DCPUModel(): THREE.Group {
+  const group = new THREE.Group();
+  group.name = 'CPU_Processor_Model';
+
+  // 1. PCB Substrate (Green High-Density Dielectric Board)
+  const pcbGeo = new THREE.BoxGeometry(2.8, 0.12, 2.8);
+  const pcbMat = new THREE.MeshStandardMaterial({
+    color: 0x064e3b,
+    roughness: 0.35,
+    metalness: 0.2,
+  });
+  const pcb = new THREE.Mesh(pcbGeo, pcbMat);
+  pcb.position.y = 0;
+  group.add(pcb);
+
+  // Gold alignment triangle (Pin 1 indicator)
+  const triangleShape = new THREE.Shape();
+  triangleShape.moveTo(0, 0);
+  triangleShape.lineTo(0.35, 0);
+  triangleShape.lineTo(0, 0.35);
+  triangleShape.closePath();
+
+  const triGeo = new THREE.ExtrudeGeometry(triangleShape, { depth: 0.02, bevelEnabled: false });
+  const goldMat = new THREE.MeshStandardMaterial({
+    color: 0xf59e0b,
+    metalness: 0.95,
+    roughness: 0.15,
+  });
+  const triMesh = new THREE.Mesh(triGeo, goldMat);
+  triMesh.rotation.x = Math.PI / 2;
+  triMesh.position.set(-1.3, 0.07, -1.3);
+  group.add(triMesh);
+
+  // 2. Stepped Nickel Integrated Heat Spreader Base
+  const ihsBaseGeo = new THREE.BoxGeometry(2.3, 0.08, 2.3);
+  const ihsBaseMat = new THREE.MeshStandardMaterial({
+    color: 0x9ca3af,
+    metalness: 0.9,
+    roughness: 0.28,
+  });
+  const ihsBase = new THREE.Mesh(ihsBaseGeo, ihsBaseMat);
+  ihsBase.position.y = 0.08;
+  group.add(ihsBase);
+
+  // 3. IHS Main Cap (Brushed Silver Nickel)
+  const ihsCapGeo = new THREE.BoxGeometry(2.05, 0.14, 2.05);
+  const ihsCapMat = new THREE.MeshStandardMaterial({
+    color: 0xd1d5db,
+    metalness: 0.95,
+    roughness: 0.2,
+  });
+  const ihsCap = new THREE.Mesh(ihsCapGeo, ihsCapMat);
+  ihsCap.position.y = 0.18;
+  group.add(ihsCap);
+
+  // 4. Central Silicon Core Die
+  const dieGeo = new THREE.BoxGeometry(1.2, 0.04, 1.2);
+  const dieMat = new THREE.MeshStandardMaterial({
+    color: 0x111827,
+    metalness: 0.92,
+    roughness: 0.1,
+  });
+  const die = new THREE.Mesh(dieGeo, dieMat);
+  die.position.y = 0.26;
+  group.add(die);
+
+  // Laser Etched Core Ring
+  const badgeGeo = new THREE.RingGeometry(0.28, 0.38, 32);
+  const badgeMat = new THREE.MeshStandardMaterial({
+    color: 0xea580c,
+    metalness: 0.8,
+    roughness: 0.2,
+    side: THREE.DoubleSide,
+  });
+  const badge = new THREE.Mesh(badgeGeo, badgeMat);
+  badge.rotation.x = -Math.PI / 2;
+  badge.position.y = 0.285;
+  group.add(badge);
+
+  // Silicon Crystal Core
+  const crystalGeo = new THREE.BoxGeometry(0.35, 0.02, 0.35);
+  const crystalMat = new THREE.MeshStandardMaterial({
+    color: 0x38bdf8,
+    emissive: 0x0284c7,
+    emissiveIntensity: 0.6,
+    metalness: 0.5,
+    roughness: 0.1,
+  });
+  const crystal = new THREE.Mesh(crystalGeo, crystalMat);
+  crystal.position.y = 0.285;
+  group.add(crystal);
+
+  // 5. Ceramic SMD Decoupling Capacitors
+  const capMat = new THREE.MeshStandardMaterial({
+    color: 0x78350f,
+    roughness: 0.5,
+    metalness: 0.1,
+  });
+
+  const capPositions = [
+    [-1.2, 0.08, -0.6],
+    [-1.2, 0.08, -0.2],
+    [-1.2, 0.08, 0.2],
+    [-1.2, 0.08, 0.6],
+    [1.2, 0.08, -0.6],
+    [1.2, 0.08, -0.2],
+    [1.2, 0.08, 0.2],
+    [1.2, 0.08, 0.6],
+    [-0.6, 0.08, -1.2],
+    [-0.2, 0.08, -1.2],
+    [0.2, 0.08, -1.2],
+    [0.6, 0.08, -1.2],
+    [-0.6, 0.08, 1.2],
+    [-0.2, 0.08, 1.2],
+    [0.2, 0.08, 1.2],
+    [0.6, 0.08, 1.2],
+  ];
+
+  capPositions.forEach(([x, y, z]) => {
+    const cap = new THREE.Mesh(new THREE.BoxGeometry(0.12, 0.06, 0.18), capMat);
+    cap.position.set(x, y, z);
+    if (Math.abs(z) > 1.0) cap.rotation.y = Math.PI / 2;
+    group.add(cap);
+  });
+
+  // 6. Bottom Gold LGA Contact Pads
+  const pinGeo = new THREE.CylinderGeometry(0.04, 0.04, 0.03, 8);
+  for (let row = -1.1; row <= 1.1; row += 0.3) {
+    for (let col = -1.1; col <= 1.1; col += 0.3) {
+      if (Math.abs(row) < 0.4 && Math.abs(col) < 0.4) continue;
+      const pin = new THREE.Mesh(pinGeo, goldMat);
+      pin.position.set(row, -0.07, col);
+      group.add(pin);
+    }
+  }
+
+  // Center Bottom SMD Matrix
+  const centerPcbCapMat = new THREE.MeshStandardMaterial({
+    color: 0x92400e,
+    roughness: 0.4,
+    metalness: 0.3,
+  });
+  for (let r = -0.25; r <= 0.25; r += 0.2) {
+    for (let c = -0.25; c <= 0.25; c += 0.2) {
+      const bCap = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.04, 0.12), centerPcbCapMat);
+      bCap.position.set(r, -0.07, c);
+      group.add(bCap);
+    }
+  }
+
+  return group;
+}
+
 export function ThreeRigCardViewer({
   modelUrl,
   onlineModelUrl,
@@ -78,7 +231,7 @@ export function ThreeRigCardViewer({
     renderer.toneMappingExposure = 1.25;
     container.appendChild(renderer.domElement);
 
-    // 2. Orbit Controls
+    // 2. Orbit Controls with mobile touch optimization
     const controls = new OrbitControls(camera, renderer.domElement);
     controlsRef.current = controls;
     controls.enableDamping = true;
@@ -123,12 +276,12 @@ export function ThreeRigCardViewer({
     ringMesh.position.y = -1.35;
     scene.add(ringMesh);
 
-    // 4. Model Loading via GLTFLoader
+    // 4. Model Loading via GLTFLoader or 3D CPU Generator
     const loader = new GLTFLoader();
     let loadedModel: THREE.Group | null = null;
     const originalMaterials = new Map<THREE.Mesh, THREE.Material | THREE.Material[]>();
 
-    const applyModel = (gltf: any) => {
+    const applyModel = (gltf: { scene: THREE.Group }) => {
       if (isDisposed) return;
       loadedModel = gltf.scene;
 
@@ -158,35 +311,44 @@ export function ThreeRigCardViewer({
       setIsLoading(false);
     };
 
-    const tryLoad = (url: string, fallbackUrl?: string) => {
-      loader.load(
-        url,
-        (gltf) => {
-          applyModel(gltf);
-        },
-        undefined,
-        (err) => {
-          console.warn(`Failed loading model from ${url}`, err);
-          if (fallbackUrl && fallbackUrl !== url) {
-            console.log(`Attempting fallback to ${fallbackUrl}`);
-            loader.load(
-              fallbackUrl,
-              (gltf) => applyModel(gltf),
-              undefined,
-              (fallbackErr) => {
-                console.error(`Fallback failed for ${fallbackUrl}`, fallbackErr);
-                if (!isDisposed) setHasError(true);
-              }
-            );
-          } else {
-            if (!isDisposed) setHasError(true);
-          }
-        }
-      );
-    };
+    // Check if CPU model is requested
+    const isCpuModel =
+      modelUrl.toLowerCase().includes('cpu') ||
+      (onlineModelUrl && onlineModelUrl.toLowerCase() === 'cpu');
 
-    // Load from local public cache with online URL fallback
-    tryLoad(modelUrl, onlineModelUrl);
+    if (isCpuModel) {
+      const cpuGroup = create3DCPUModel();
+      applyModel({ scene: cpuGroup });
+    } else {
+      const tryLoad = (url: string, fallbackUrl?: string) => {
+        loader.load(
+          url,
+          (gltf) => {
+            applyModel(gltf);
+          },
+          undefined,
+          (err) => {
+            console.warn(`Failed loading model from ${url}`, err);
+            if (fallbackUrl && fallbackUrl !== url) {
+              console.log(`Attempting fallback to ${fallbackUrl}`);
+              loader.load(
+                fallbackUrl,
+                (gltf) => applyModel(gltf),
+                undefined,
+                (fallbackErr) => {
+                  console.error(`Fallback failed for ${fallbackUrl}`, fallbackErr);
+                  if (!isDisposed) setHasError(true);
+                }
+              );
+            } else {
+              if (!isDisposed) setHasError(true);
+            }
+          }
+        );
+      };
+
+      tryLoad(modelUrl, onlineModelUrl);
+    }
 
     // 5. Animation Loop
     let animationFrameId: number;

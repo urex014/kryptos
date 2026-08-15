@@ -40,8 +40,8 @@ export const MINING_RIGS: MiningRig[] = [
     coolingType: 'Dual Honeycomb Air Fan',
     tier: 'Starter',
     image: '/rigs/rig-1.jpg',
-    modelUrl: '/models/boombox.glb',
-    onlineModelUrl: 'https://threejs.org/examples/models/gltf/BoomBox.glb',
+    modelUrl: '/models/cpu_chip.glb',
+    onlineModelUrl: 'cpu',
     inStock: true,
     specs: {
       chips: '7nm FinFET x 180',
