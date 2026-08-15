@@ -24,13 +24,37 @@ export interface MiningRig {
   };
 }
 
-// 5 mining rigs with distinct specs and customizable pricing
+// 6 mining rigs with distinct specs and customizable pricing
 export const MINING_RIGS: MiningRig[] = [
   {
-    id: 'rig-starter-x100',
-    name: 'Kryptos X-100 ASIC',
-    tagline: 'Entry-level ultra-quiet home mining unit with high thermal efficiency',
-    priceEth: '0.015',
+    id: 'rig-nano-x50',
+    name: 'Kryptos Nano X-50',
+    tagline: 'Ultra-compact silent plug-and-play desktop micro node for entry miners',
+    priceEth: '0.0068', // ≈ $20 USD
+    hashrate: '45 TH/s',
+    hashrateRaw: 45,
+    powerDraw: '1,250 W',
+    efficiency: '27.8 J/TH',
+    estDailyEth: '0.00018 ETH',
+    algorithm: 'SHA-256 / Ethash',
+    coolingType: 'Whisper-Quiet Dual Fan',
+    tier: 'Starter',
+    image: '/rigs/rig-1.jpg',
+    modelUrl: '/models/cpu_chip.glb',
+    onlineModelUrl: 'cpu',
+    inStock: true,
+    specs: {
+      chips: '7nm FinFET x 90',
+      dimensions: '320 x 160 x 220 mm',
+      weight: '8.5 kg',
+      noiseLevel: '48 dB (Ultra-Quiet)',
+    },
+  },
+  {
+    id: 'rig-vector-x100',
+    name: 'Kryptos Vector X-100',
+    tagline: 'High-efficiency balanced home mining unit with active thermal dissipation',
+    priceEth: '0.015', // ≈ $45 USD
     hashrate: '110 TH/s',
     hashrateRaw: 110,
     powerDraw: '3,100 W',
@@ -40,8 +64,8 @@ export const MINING_RIGS: MiningRig[] = [
     coolingType: 'Dual Honeycomb Air Fan',
     tier: 'Starter',
     image: '/rigs/rig-1.jpg',
-    modelUrl: '/models/cpu_chip.glb',
-    onlineModelUrl: 'cpu',
+    modelUrl: '/models/boombox.glb',
+    onlineModelUrl: 'https://threejs.org/examples/models/gltf/BoomBox.glb',
     inStock: true,
     specs: {
       chips: '7nm FinFET x 180',
@@ -51,17 +75,17 @@ export const MINING_RIGS: MiningRig[] = [
     },
   },
   {
-    id: 'rig-pro-forge-300',
-    name: 'HashMaster Dual-Forge',
+    id: 'rig-forge-s300',
+    name: 'Kryptos Forge S-300',
     tagline: 'High-throughput dual-chamber rig with copper heat pipes & telemetry LCD',
-    priceEth: '0.045',
+    priceEth: '0.045', // ≈ $135 USD
     hashrate: '315 TH/s',
     hashrateRaw: 315,
     powerDraw: '4,850 W',
     efficiency: '22.5 J/TH',
     estDailyEth: '0.00135 ETH',
     algorithm: 'SHA-256',
-    coolingType: 'Dual-Chamber Air & Copper Heatpipe',
+    coolingType: 'Dual-Chamber Copper Heatpipe',
     tier: 'Pro',
     image: '/rigs/rig-2.jpg',
     modelUrl: '/models/damaged_helmet.glb',
@@ -77,9 +101,9 @@ export const MINING_RIGS: MiningRig[] = [
   },
   {
     id: 'rig-hydro-6000',
-    name: 'HexaCool Hydro-6000',
+    name: 'Kryptos Hydro-6000',
     tagline: 'Industrial closed-loop liquid cooled server for continuous high-load mining',
-    priceEth: '0.12',
+    priceEth: '0.12', // ≈ $360 USD
     hashrate: '780 TH/s',
     hashrateRaw: 780,
     powerDraw: '6,200 W',
@@ -101,9 +125,9 @@ export const MINING_RIGS: MiningRig[] = [
   },
   {
     id: 'rig-quantum-blade',
-    name: 'QuantumBlade Cryo-H6',
+    name: 'Kryptos QuantumBlade-H6',
     tagline: 'Multi-module rack-mounted blade system with optical status telemetry',
-    priceEth: '0.35',
+    priceEth: '0.35', // ≈ $1,050 USD
     hashrate: '2.4 PH/s',
     hashrateRaw: 2400,
     powerDraw: '9,400 W',
@@ -125,9 +149,9 @@ export const MINING_RIGS: MiningRig[] = [
   },
   {
     id: 'rig-apex-hyperion',
-    name: 'Apex Hyperion Immersion-9000',
+    name: 'Kryptos Apex Hyperion-9000',
     tagline: 'Sovereign-tier dielectric immersion mining powerhouse with microsecond sync',
-    priceEth: '0.85',
+    priceEth: '0.85', // ≈ $2,550 USD
     hashrate: '6.8 PH/s',
     hashrateRaw: 6800,
     powerDraw: '18,500 W',

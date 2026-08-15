@@ -198,7 +198,7 @@ export function LandingPage({
                 <div className="text-zinc-500 text-[10px] uppercase">
                   RIG FLEET
                 </div>
-                <div className="text-orange-500 font-bold mt-0.5">5 Models</div>
+                <div className="text-orange-500 font-bold mt-0.5">6 Models</div>
               </div>
             </div>
           </div>

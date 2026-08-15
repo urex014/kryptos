@@ -189,7 +189,7 @@ export default function Home() {
                     DEPLOYABLE MODELS
                   </div>
                   <div className="text-base font-bold text-white mt-0.5">
-                    5 Distinct Units
+                    6 Distinct Units
                   </div>
                 </div>
                 <div>
